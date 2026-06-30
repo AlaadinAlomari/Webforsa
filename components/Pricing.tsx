@@ -1,23 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 import { PRICING, WHATSAPP } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
 import SectionRule from './SectionRule';
 
-// TODO: STRIPE INTEGRATION
-// Replace this stub with a call to POST /api/checkout, which should create a
-// Stripe Checkout Session for a $1,997 USD one-time payment (see
-// app/api/checkout/route.ts) and return { url: session.url }. Once the
-// response arrives, redirect the browser with window.location.href = url.
-function handleCheckout() {
-  console.log('TODO: redirect to Stripe Checkout session');
-  alert('Stripe checkout coming soon — contact us on WhatsApp to reserve your slot for now.');
-  window.open(WHATSAPP.url, '_blank', 'noopener,noreferrer');
+async function handleCheckout() {
+  try {
+    const res = await fetch('/api/checkout', { method: 'POST' });
+    const data: { url?: string; error?: string } = await res.json();
+
+    if (!res.ok || !data.url) {
+      throw new Error(data.error || 'Checkout failed');
+    }
+
+    window.location.href = data.url;
+  } catch {
+    alert('Stripe checkout is unavailable right now — contact us on WhatsApp to reserve your slot for now.');
+    window.open(WHATSAPP.url, '_blank', 'noopener,noreferrer');
+  }
 }
 
 export default function Pricing() {
   const left = useReveal<HTMLDivElement>();
   const right = useReveal<HTMLDivElement>();
+  const [isLoading, setIsLoading] = useState(false);
   const notesLines = PRICING.notes.split('\n');
 
   return (
@@ -77,10 +84,15 @@ export default function Pricing() {
             ))}
             <button
               type="button"
-              onClick={handleCheckout}
-              className="mt-10 block w-full bg-gold py-[1.1rem] text-center text-[0.72rem] font-medium uppercase tracking-[0.2em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.3em]"
+              disabled={isLoading}
+              onClick={async () => {
+                setIsLoading(true);
+                await handleCheckout();
+                setIsLoading(false);
+              }}
+              className="mt-10 block w-full bg-gold py-[1.1rem] text-center text-[0.72rem] font-medium uppercase tracking-[0.2em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.3em] disabled:cursor-wait disabled:opacity-60"
             >
-              {PRICING.cta}
+              {isLoading ? 'Redirecting…' : PRICING.cta}
             </button>
             <p className="mt-5 text-center text-[0.72rem] tracking-[0.05em] text-muted">
               {PRICING.guarantee}

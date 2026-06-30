@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { WHATSAPP } from '@/lib/constants';
+import { EMAIL, WHATSAPP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — Webforsa',
@@ -119,6 +119,10 @@ export default function PrivacyPage() {
               className="border-b border-gold/35 text-gold no-underline"
             >
               WhatsApp ({WHATSAPP.number})
+            </a>{' '}
+            or email{' '}
+            <a href={`mailto:${EMAIL.support}`} className="border-b border-gold/35 text-gold no-underline">
+              {EMAIL.support}
             </a>
             .
           </p>

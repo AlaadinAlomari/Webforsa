@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { WHATSAPP } from '@/lib/constants';
+import { EMAIL, WHATSAPP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Payment Confirmed — Webforsa',
@@ -40,6 +40,12 @@ export default function SuccessPage() {
             Back to Webforsa
           </Link>
         </div>
+        <p className="mt-10 text-[0.78rem] text-muted">
+          Need help with your order? Email{' '}
+          <a href={`mailto:${EMAIL.support}`} className="border-b border-gold/35 text-gold no-underline">
+            {EMAIL.support}
+          </a>
+        </p>
       </div>
     </main>
   );

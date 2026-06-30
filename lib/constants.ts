@@ -9,8 +9,9 @@ export const WHATSAPP = {
   url: 'https://wa.me/447442967254?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20a%20landing%20page%20for%20my%20business.',
 };
 
-export const NAV = {
-  tag: 'Landing Page Studio · webforsa.com',
+export const EMAIL = {
+  hello: 'hello@webforsa.com',
+  support: 'Support@webforsa.com',
 };
 
 export const HERO = {

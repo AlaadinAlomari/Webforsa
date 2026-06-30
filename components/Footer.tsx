@@ -1,4 +1,4 @@
-import { FOOTER, WHATSAPP } from '@/lib/constants';
+import { EMAIL, FOOTER, WHATSAPP } from '@/lib/constants';
 
 export default function Footer() {
   return (
@@ -25,6 +25,12 @@ export default function Footer() {
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm5.79 14.17c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.61-.6-2.83-1.22-4.68-4.07-4.82-4.26-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.66-.17 1.34Z" />
             </svg>
             WhatsApp Support
+          </a>
+          <a
+            href={`mailto:${EMAIL.hello}`}
+            className="text-[0.65rem] uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-ivory sm:text-[0.7rem]"
+          >
+            {EMAIL.hello}
           </a>
           <a href="/#del" className="text-[0.65rem] uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-ivory sm:text-[0.7rem]">Services</a>
           <a href="/#price" className="text-[0.65rem] uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-ivory sm:text-[0.7rem]">Pricing</a>

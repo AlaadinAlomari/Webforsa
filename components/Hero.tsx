@@ -1,6 +1,6 @@
 'use client';
 
-import { HERO, NAV } from '@/lib/constants';
+import { HERO } from '@/lib/constants';
 import { useCheckout } from '@/hooks/useCheckout';
 
 export default function Hero() {
@@ -11,11 +11,10 @@ export default function Hero() {
       id="hero"
       className="relative z-[1] flex min-h-screen flex-col justify-between bg-black px-[5vw] pb-[3.5rem] pt-12 before:absolute before:bottom-0 before:left-[5vw] before:right-[5vw] before:h-px before:bg-gradient-to-r before:from-transparent before:via-gold/30 before:to-transparent before:pointer-events-none"
     >
-      <nav className="flex items-center justify-between border-b border-border pb-[2.8rem]">
+      <nav className="flex items-center border-b border-border pb-[2.8rem]">
         <div className="font-display text-[1.35rem] font-light uppercase tracking-[0.2em] text-ivory">
           Web<em className="text-gold italic">forsa</em>
         </div>
-        <div className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">{NAV.tag}</div>
       </nav>
 
       <div className="flex flex-1 flex-col justify-center py-[4vh]">

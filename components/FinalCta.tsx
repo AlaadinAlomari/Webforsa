@@ -1,6 +1,6 @@
 'use client';
 
-import { FINAL_CTA, SITE, WHATSAPP } from '@/lib/constants';
+import { EMAIL, FINAL_CTA, SITE, WHATSAPP } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
 import { useCheckout } from '@/hooks/useCheckout';
 
@@ -77,6 +77,12 @@ export default function FinalCta() {
           </svg>
           Message on WhatsApp
         </a>
+        <p className="mt-6 text-[0.78rem] text-muted">
+          Or email{' '}
+          <a href={`mailto:${EMAIL.hello}`} className="border-b border-gold/35 text-gold no-underline">
+            {EMAIL.hello}
+          </a>
+        </p>
       </div>
     </section>
   );

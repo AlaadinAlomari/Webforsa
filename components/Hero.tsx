@@ -1,6 +1,11 @@
-import { HERO, NAV, WHATSAPP } from '@/lib/constants';
+'use client';
+
+import { HERO, NAV } from '@/lib/constants';
+import { useCheckout } from '@/hooks/useCheckout';
 
 export default function Hero() {
+  const { startCheckout, isLoading } = useCheckout();
+
   return (
     <section
       id="hero"
@@ -61,14 +66,14 @@ export default function Hero() {
             <br />
             {HERO.rightCopy[2]}
           </p>
-          <a
-            href={WHATSAPP.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em]"
+          <button
+            type="button"
+            disabled={isLoading}
+            onClick={startCheckout}
+            className="inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em] disabled:cursor-wait disabled:opacity-60"
           >
-            {HERO.cta}
-          </a>
+            {isLoading ? 'Redirecting…' : HERO.cta}
+          </button>
         </div>
       </div>
     </section>

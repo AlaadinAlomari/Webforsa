@@ -1,30 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { PRICING, WHATSAPP } from '@/lib/constants';
+import { PRICING } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
+import { useCheckout } from '@/hooks/useCheckout';
 import SectionRule from './SectionRule';
-
-async function handleCheckout() {
-  try {
-    const res = await fetch('/api/checkout', { method: 'POST' });
-    const data: { url?: string; error?: string } = await res.json();
-
-    if (!res.ok || !data.url) {
-      throw new Error(data.error || 'Checkout failed');
-    }
-
-    window.location.href = data.url;
-  } catch {
-    alert('Stripe checkout is unavailable right now — contact us on WhatsApp to reserve your slot for now.');
-    window.open(WHATSAPP.url, '_blank', 'noopener,noreferrer');
-  }
-}
 
 export default function Pricing() {
   const left = useReveal<HTMLDivElement>();
   const right = useReveal<HTMLDivElement>();
-  const [isLoading, setIsLoading] = useState(false);
+  const { startCheckout, isLoading } = useCheckout();
   const notesLines = PRICING.notes.split('\n');
 
   return (
@@ -85,11 +69,7 @@ export default function Pricing() {
             <button
               type="button"
               disabled={isLoading}
-              onClick={async () => {
-                setIsLoading(true);
-                await handleCheckout();
-                setIsLoading(false);
-              }}
+              onClick={startCheckout}
               className="mt-10 block w-full bg-gold py-[1.1rem] text-center text-[0.72rem] font-medium uppercase tracking-[0.2em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.3em] disabled:cursor-wait disabled:opacity-60"
             >
               {isLoading ? 'Redirecting…' : PRICING.cta}

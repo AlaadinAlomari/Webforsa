@@ -2,13 +2,15 @@
 
 import { FINAL_CTA, SITE, WHATSAPP } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
+import { useCheckout } from '@/hooks/useCheckout';
 
 export default function FinalCta() {
   const eye = useReveal<HTMLDivElement>();
   const heading = useReveal<HTMLHeadingElement>();
   const sub = useReveal<HTMLParagraphElement>();
-  const cta = useReveal<HTMLAnchorElement>();
+  const cta = useReveal<HTMLButtonElement>();
   const whatsapp = useReveal<HTMLDivElement>();
+  const { startCheckout, isLoading } = useCheckout();
 
   return (
     <section
@@ -45,16 +47,16 @@ export default function FinalCta() {
       >
         {FINAL_CTA.sub}
       </p>
-      <a
+      <button
         ref={cta.ref}
-        href={WHATSAPP.url}
-        target="_blank"
-        rel="noopener noreferrer"
+        type="button"
+        disabled={isLoading}
+        onClick={startCheckout}
         style={{ transitionDelay: '0.22s' }}
-        className={`r inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em] ${cta.isVisible ? 'v' : ''}`}
+        className={`r inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em] disabled:cursor-wait disabled:opacity-60 ${cta.isVisible ? 'v' : ''}`}
       >
-        {FINAL_CTA.cta}
-      </a>
+        {isLoading ? 'Redirecting…' : FINAL_CTA.cta}
+      </button>
 
       <div
         ref={whatsapp.ref}

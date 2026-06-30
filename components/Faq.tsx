@@ -1,6 +1,6 @@
 'use client';
 
-import { FAQ_ITEMS, SITE } from '@/lib/constants';
+import { FAQ_ITEMS, WHATSAPP } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
 
 function FaqLeft() {
@@ -18,12 +18,14 @@ function FaqLeft() {
         plain answers.
       </h2>
       <p className="mt-6 text-[0.85rem] leading-[1.85] text-body">
-        Anything not covered — email{' '}
+        Anything not covered — message us on{' '}
         <a
-          href={`mailto:${SITE.email}`}
+          href={WHATSAPP.url}
+          target="_blank"
+          rel="noopener noreferrer"
           className="border-b border-gold/35 text-gold no-underline"
         >
-          {SITE.email}
+          WhatsApp
         </a>
         . A person will reply within 24 hours.
       </p>

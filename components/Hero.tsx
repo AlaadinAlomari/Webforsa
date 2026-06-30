@@ -1,4 +1,4 @@
-import { HERO, NAV } from '@/lib/constants';
+import { HERO, NAV, WHATSAPP } from '@/lib/constants';
 
 export default function Hero() {
   return (
@@ -62,7 +62,9 @@ export default function Hero() {
             {HERO.rightCopy[2]}
           </p>
           <a
-            href="#price"
+            href={WHATSAPP.url}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em]"
           >
             {HERO.cta}

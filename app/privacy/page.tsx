@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { WHATSAPP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — Webforsa',
@@ -35,18 +36,19 @@ export default function PrivacyPage() {
 
         <Section title="1. Information We Collect">
           <p>
-            When you contact us through our website, we collect the information you provide
-            directly: your name, email address, company or website (if given), and the details
-            of your project that you share with us. We also collect basic analytics data about
-            how visitors use our site, such as pages viewed and time on site.
+            When you message us on WhatsApp, we collect the information you provide directly:
+            your name, phone number, and the details of your project that you share with us. We
+            also collect basic analytics data about how visitors use our site, such as pages
+            viewed and time on site.
           </p>
         </Section>
 
         <Section title="2. How We Use Your Information">
           <p>
-            We use the information you submit to respond to your inquiry, schedule a discovery
-            call, deliver the services you&apos;ve requested, and send you updates related to your
-            project. We do not use your information for unrelated marketing without your consent.
+            We use the information you share via WhatsApp to respond to your inquiry, schedule a
+            discovery call, deliver the services you&apos;ve requested, and send you updates related
+            to your project. We do not use your information for unrelated marketing without your
+            consent.
           </p>
         </Section>
 
@@ -54,9 +56,9 @@ export default function PrivacyPage() {
           <p>
             We do not sell your personal data to anyone. We may share limited information with
             trusted third-party service providers who help us operate our business, including
-            Google Analytics (for website analytics) and our email service provider (for sending
-            and receiving correspondence). These providers only receive the data necessary to
-            perform their function.
+            Google Analytics (for website analytics), WhatsApp/Meta (for messaging and
+            correspondence), and Stripe (for processing payments). These providers only receive
+            the data necessary to perform their function.
           </p>
         </Section>
 
@@ -77,7 +79,7 @@ export default function PrivacyPage() {
 
         <Section title="5. Data Retention">
           <p>
-            We retain inquiry data (contact form submissions) for up to 2 years from the date of
+            We retain inquiry data (WhatsApp messages) for up to 2 years from the date of
             submission. Project files and deliverables are retained for 1 year following project
             launch, after which they may be archived or deleted.
           </p>
@@ -86,12 +88,14 @@ export default function PrivacyPage() {
         <Section title="6. Your Rights">
           <p>
             You have the right to access, correct, or request deletion of any personal data we
-            hold about you. To exercise any of these rights, email us at{' '}
+            hold about you. To exercise any of these rights, message us on{' '}
             <a
-              href="mailto:hello@webforsa.com"
+              href={WHATSAPP.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-b border-gold/35 text-gold no-underline"
             >
-              hello@webforsa.com
+              WhatsApp
             </a>{' '}
             and we will respond within a reasonable timeframe.
           </p>
@@ -107,12 +111,14 @@ export default function PrivacyPage() {
 
         <Section title="8. Contact Us">
           <p>
-            If you have any questions about this Privacy Policy, please contact us at{' '}
+            If you have any questions about this Privacy Policy, please contact us on{' '}
             <a
-              href="mailto:hello@webforsa.com"
+              href={WHATSAPP.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-b border-gold/35 text-gold no-underline"
             >
-              hello@webforsa.com
+              WhatsApp ({WHATSAPP.number})
             </a>
             .
           </p>

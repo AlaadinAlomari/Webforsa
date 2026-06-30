@@ -1,8 +1,12 @@
 export const SITE = {
   name: 'Webforsa',
   url: 'https://webforsa.com',
-  email: 'hello@webforsa.com',
   tagline: 'Landing Page Studio',
+};
+
+export const WHATSAPP = {
+  number: '+44 7442 967254',
+  url: 'https://wa.me/447442967254?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20a%20landing%20page%20for%20my%20business.',
 };
 
 export const NAV = {
@@ -13,7 +17,7 @@ export const HERO = {
   eyebrow: 'One flat investment — done in 10 days',
   price: '1,997',
   headlineLines: ['A landing page that turns', 'strangers into clients —'],
-  headlineBold: "or you don't pay the rest.",
+  headlineBold: "or your money back if we miss the deadline.",
   rightCopy: ['Built from scratch.', 'No templates. No bloat.', 'One page. One goal. Done.'],
   cta: 'Start the conversation',
 };
@@ -108,10 +112,10 @@ export const PROCESS_STEPS: ProcessStep[] = [
 
 export const PRICING = {
   notes:
-    'Payment: 50% on start · 50% on launch day\nAccepted: Bank transfer · Visa · PayPal · Wise\nRevisions: 2 rounds included in design phase',
+    'Payment: $1,997 in full, due before work begins\nAccepted: Secure checkout via Stripe\nRevisions: 2 rounds included in design phase',
   intro: [
     'A single flat fee covers everything — strategy, copy, design, build, and 30 days of support after launch.',
-    "We've structured it this way because our incentive should be aligned with yours: a page that actually converts, delivered on time.",
+    'Full payment is collected upfront through a secure checkout. Once payment is confirmed, your 10-day build timeline begins immediately.',
   ],
   price: '1,997',
   sub: 'Complete · One-time · Flat',
@@ -126,7 +130,7 @@ export const PRICING = {
     { label: '30-day post-launch support', status: 'Included' },
     { label: 'Source files — fully yours', status: 'Included' },
   ],
-  cta: 'Reserve your project slot',
+  cta: 'Pay & reserve your slot',
   guarantee: 'Discovery call is free · No commitment required',
 };
 
@@ -190,7 +194,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'How does payment work?',
     answer:
-      '50% upfront to begin, 50% on launch day after you\'re satisfied. We accept bank transfer, Visa, PayPal, and Wise.',
+      'Payment is collected in full before the project begins. Once your payment is confirmed via secure checkout, we start immediately and your 10-day delivery clock starts that day.',
+  },
+  {
+    question: 'Is payment secure?',
+    answer:
+      'Yes. All payments are processed through Stripe, a PCI-compliant payment processor used by millions of businesses worldwide. We never see or store your card details.',
   },
   {
     question: 'Do I own the page after launch?',

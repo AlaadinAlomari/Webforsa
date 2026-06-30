@@ -1,49 +1,14 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { FINAL_CTA, SITE } from '@/lib/constants';
+import { FINAL_CTA, SITE, WHATSAPP } from '@/lib/constants';
 import { useReveal } from '@/hooks/useReveal';
-
-type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function FinalCta() {
   const eye = useReveal<HTMLDivElement>();
   const heading = useReveal<HTMLHeadingElement>();
   const sub = useReveal<HTMLParagraphElement>();
   const cta = useReveal<HTMLAnchorElement>();
-  const form = useReveal<HTMLFormElement>();
-
-  const [status, setStatus] = useState<Status>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus('submitting');
-    setErrorMessage('');
-
-    const formData = new FormData(e.currentTarget);
-    const payload = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      company: formData.get('company'),
-      message: formData.get('message'),
-    };
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
-      setStatus('success');
-      e.currentTarget.reset();
-    } catch (err) {
-      setStatus('error');
-      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong.');
-    }
-  }
+  const whatsapp = useReveal<HTMLDivElement>();
 
   return (
     <section
@@ -82,81 +47,35 @@ export default function FinalCta() {
       </p>
       <a
         ref={cta.ref}
-        href={`mailto:${SITE.email}`}
+        href={WHATSAPP.url}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{ transitionDelay: '0.22s' }}
         className={`r inline-block bg-gold px-[2.4rem] py-[0.95rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.28em] ${cta.isVisible ? 'v' : ''}`}
       >
         {FINAL_CTA.cta}
       </a>
 
-      <form
-        ref={form.ref}
-        onSubmit={handleSubmit}
-        className={`r mx-auto mt-24 max-w-[480px] text-left ${form.isVisible ? 'v' : ''}`}
+      <div
+        ref={whatsapp.ref}
+        style={{ transitionDelay: '0.3s' }}
+        className={`r mx-auto mt-16 max-w-[420px] ${whatsapp.isVisible ? 'v' : ''}`}
       >
-        <div className="mb-5">
-          <label htmlFor="name" className="mb-2 block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-            Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            className="w-full border border-border bg-surface px-4 py-3 text-sm text-ivory outline-none transition-colors focus:border-gold"
-          />
-        </div>
-        <div className="mb-5">
-          <label htmlFor="email" className="mb-2 block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="w-full border border-border bg-surface px-4 py-3 text-sm text-ivory outline-none transition-colors focus:border-gold"
-          />
-        </div>
-        <div className="mb-5">
-          <label htmlFor="company" className="mb-2 block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-            Company / Website
-          </label>
-          <input
-            id="company"
-            name="company"
-            type="text"
-            className="w-full border border-border bg-surface px-4 py-3 text-sm text-ivory outline-none transition-colors focus:border-gold"
-          />
-        </div>
-        <div className="mb-7">
-          <label htmlFor="message" className="mb-2 block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-            Tell us about your project
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={4}
-            className="w-full border border-border bg-surface px-4 py-3 text-sm text-ivory outline-none transition-colors focus:border-gold"
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={status === 'submitting'}
-          className="block w-full bg-gold py-[1.1rem] text-center text-[0.72rem] font-medium uppercase tracking-[0.2em] text-black transition-[background,letter-spacing] duration-300 hover:bg-gold-lt hover:tracking-[0.3em] disabled:opacity-60"
+        <p className="mb-5 text-[0.85rem] leading-[1.85] text-body">
+          Prefer to chat directly? Message us on WhatsApp.
+        </p>
+        <a
+          href={WHATSAPP.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 border border-gold/35 px-[2rem] py-[0.85rem] text-[0.72rem] font-medium uppercase tracking-[0.18em] text-gold transition-colors duration-300 hover:bg-gold hover:text-black"
         >
-          {status === 'submitting' ? 'Sending…' : 'Send message'}
-        </button>
-        {status === 'success' && (
-          <p className="mt-4 text-center text-[0.8rem] text-gold">
-            Thanks — we&apos;ll be in touch within 24 hours.
-          </p>
-        )}
-        {status === 'error' && (
-          <p className="mt-4 text-center text-[0.8rem] text-red-400">{errorMessage}</p>
-        )}
-      </form>
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 flex-shrink-0 fill-current">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm5.79 14.17c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.61-.6-2.83-1.22-4.68-4.07-4.82-4.26-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.66-.17 1.34Z" />
+          </svg>
+          Message on WhatsApp
+        </a>
+      </div>
     </section>
   );
 }

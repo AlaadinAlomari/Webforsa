@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { WHATSAPP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Terms of Service — Webforsa',
@@ -43,16 +44,16 @@ export default function TermsPage() {
 
         <Section title="2. Payment Terms">
           <p>
-            Our service is a flat fee of $1,997 USD. A 50% deposit is required upfront to begin
-            work and is non-refundable. The remaining 50% is due on launch day, once the project
-            is delivered.
+            Our service is a flat fee of $1,997 USD, due in full at the time of booking and
+            processed securely via Stripe. Payment is non-refundable once the discovery call has
+            taken place and work has begun, except as outlined in the Refund Policy below.
           </p>
         </Section>
 
         <Section title="3. Project Timeline">
           <p>
-            Projects are delivered within 10 business days of deposit receipt. This timeline is
-            contingent on the client providing requested content (copy direction, brand assets,
+            Projects are delivered within 10 business days of payment confirmation. This timeline
+            is contingent on the client providing requested content (copy direction, brand assets,
             login credentials, etc.) within 48 hours of request.
           </p>
         </Section>
@@ -83,8 +84,10 @@ export default function TermsPage() {
 
         <Section title="7. Refund Policy">
           <p>
-            The initial deposit is non-refundable once work has begun. If Webforsa fails to
-            deliver the agreed project, the remaining 50% balance will not be charged.
+            Payment is non-refundable once work has begun. However, if Webforsa fails to deliver
+            the project within the agreed 10-business-day timeline — excluding delays caused by
+            the client&apos;s late delivery of requested content — the client is entitled to a full
+            refund of the project fee.
           </p>
         </Section>
 
@@ -105,12 +108,14 @@ export default function TermsPage() {
 
         <Section title="10. Contact">
           <p>
-            For questions regarding these Terms of Service, please contact us at{' '}
+            For questions regarding these Terms of Service, please contact us on{' '}
             <a
-              href="mailto:hello@webforsa.com"
+              href={WHATSAPP.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-b border-gold/35 text-gold no-underline"
             >
-              hello@webforsa.com
+              WhatsApp ({WHATSAPP.number})
             </a>
             .
           </p>

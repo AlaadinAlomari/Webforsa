@@ -19,7 +19,7 @@ export const HERO = {
   headlineLines: ['A landing page that turns', 'strangers into clients —'],
   headlineBold: "or your money back if we miss the deadline.",
   rightCopy: ['Built from scratch.', 'No templates. No bloat.', 'One page. One goal. Done.'],
-  cta: 'Start the conversation',
+  cta: 'Pay & reserve your slot',
 };
 
 export const TICKER_ITEMS = [
@@ -214,7 +214,7 @@ export const FINAL_CTA = {
   subHeadlineLive: 'live in',
   subHeadlineDays: '10 days.',
   sub: 'The discovery call is free. The delay is the only thing that costs you.',
-  cta: 'Book a free discovery call',
+  cta: 'Pay & reserve your slot',
 };
 
 export const FOOTER = {
